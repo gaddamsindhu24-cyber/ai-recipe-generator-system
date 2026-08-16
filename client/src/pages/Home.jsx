@@ -1,8 +1,11 @@
 
 import { useNavigate } from "react-router-dom";
 
+
+
 function Home() {
   const navigate = useNavigate();
+  const isLoggedIn = Boolean(localStorage.getItem("token"));
 
   return (
     <div
@@ -34,17 +37,17 @@ function Home() {
             <button
               className="btn btn-outline-primary px-4"
               style={{ borderRadius: "25px" }}
-              onClick={() => navigate("/app")}
+              onClick={() => navigate("/app?mode=login")}
             >
-              My Recipes
+              🔐 Login
             </button>
 
             <button
               className="btn btn-primary px-4"
               style={{ borderRadius: "25px" }}
-              onClick={() => navigate("/app")}
+              onClick={() => navigate("/app?mode=signup")}
             >
-              Generate Recipe ✨
+              signup
             </button>
           </div>
         </div>
@@ -110,9 +113,15 @@ function Home() {
                     backgroundColor: "#6f42c1",
                     border: "none",
                   }}
-                  onClick={() => navigate("/app")}
+                  onClick={() => {
+  if (isLoggedIn) {
+    navigate("/my-recipes");
+  } else {
+    navigate("/app?mode=login");
+  }
+}}
                 >
-                  🍽️ Generate Recipe
+                   My Recipes
                 </button>
 
                 <button
@@ -121,9 +130,15 @@ function Home() {
                     borderRadius: "30px",
                     color: "#6f42c1",
                   }}
-                  onClick={() => navigate("/app")}
+                  onClick={() => {
+  if (isLoggedIn) {
+    navigate("/app");
+  } else {
+    navigate("/app?mode=login");
+  }
+}}
                 >
-                  📖 My Recipes
+                  Generate Recipe ✨
                 </button>
               </div>
 
@@ -703,7 +718,13 @@ function Home() {
           color: "#6f42c1",
           fontWeight: "600",
         }}
-        onClick={() => navigate("/app")}
+        onClick={() => {
+  if (isLoggedIn) {
+    navigate("/app");
+  } else {
+    navigate("/app?mode=login");
+  }
+}}
       >
         ✨ Create My Recipe
       </button>

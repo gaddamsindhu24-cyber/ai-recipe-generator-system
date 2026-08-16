@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+
+import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
 const API_URL = "https://ai-recipe-generator-465f.onrender.com";
 function App() {
-  const [isLogin, setIsLogin] = useState(false);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [isLogin, setIsLogin] = useState( searchParams.get("mode") === "login");
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
@@ -234,10 +239,22 @@ const updateRecipe = async (recipeId) => {
     </span>
 
     <div>
+
+      {/* Generate Recipe */}
+<button
+  className="btn me-2"
+  style={{
+    backgroundColor: "#198754",
+    color: "white",
+  }}
+  onClick={() => navigate("/app")}
+>
+  ✨ Generate Recipe
+</button>
       <button
         className="btn me-2"
         style={{ backgroundColor: "#8a66cb", color: "white" }}
-        onClick={fetchRecipes}
+        onClick={() => navigate("/my-recipes")}
         
       >
        🍳My Recipes
@@ -322,8 +339,9 @@ const updateRecipe = async (recipeId) => {
             <option>🌅Breakfast</option>
             <option>☀️Lunch</option>
             <option>🌙Dinner</option>
-            <option>零食</option>
+            <option>🍿Snacks</option>
             <option>🍰Dessert</option>
+            <option>🥤Drinks</option>
           </select>
         </div>
 
@@ -675,7 +693,7 @@ const updateRecipe = async (recipeId) => {
   return (
     <div style={{
     backgroundColor: "#f8f1ff",
-    minHeight: "100vh",
+    minHeight: "auto",
     padding: "40px 20px"
   }}>
       <h1 className="text-center fw-bold mb-2" style={{ color: "#0c4c2a" }}>
