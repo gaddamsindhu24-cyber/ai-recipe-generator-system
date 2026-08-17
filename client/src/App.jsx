@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
-const API_URL = "https://ai-recipe-generator-465f.onrender.com";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 function App() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();

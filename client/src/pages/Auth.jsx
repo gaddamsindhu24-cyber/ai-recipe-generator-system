@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const API_URL = "https://ai-recipe-generator-465f.onrender.com";
+const API_URL =  import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 function Auth() {
   const navigate = useNavigate();
