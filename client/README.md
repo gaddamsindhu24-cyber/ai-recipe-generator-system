@@ -1,3 +1,4 @@
+live link:https://ai-recipe-generator-system-client.onrender.com
 # 🍳 AI-Powered Recipe Generator
 
 An AI-powered recipe generation web application built using the **MERN Stack** and **Google Gemini API**.
