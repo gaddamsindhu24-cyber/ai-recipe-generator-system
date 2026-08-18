@@ -270,7 +270,7 @@ const updateRecipe = async (recipeId) => {
   </div>
 </nav>
 
-        <div className="container  bg-light min-vh-100 p-4">
+        <div className="container  bg-light p-4">
   <div className="card shadow-sm">
     <div className="card-body">
       <h2 className="card-title mb-4" style={{ color: "#e83e8c" }}>🍽️ Generate a Recipe</h2>
